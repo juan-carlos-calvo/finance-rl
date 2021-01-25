@@ -45,3 +45,5 @@ Icon*
 
 # Eclipse
 .settings
+#Hypothesis package
+.hypothesis
