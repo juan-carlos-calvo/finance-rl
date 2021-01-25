@@ -72,6 +72,8 @@ class AlmgrenChrissParams:
         )
         self.kappa = (
             np.arccosh((((self.kappa_hat ** 2) * (self.tau ** 2)) / 2) + 1) / self.tau
+            if self.tau > 0
+            else 1
         )
 
 

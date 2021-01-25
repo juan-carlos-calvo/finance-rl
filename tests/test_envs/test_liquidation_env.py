@@ -33,5 +33,34 @@ def test_reset(liquidation_time, num_n, llambda):
         ),
     )
     assert (
-        env.transations.prevPrice == env.alm_params.startingPrice
+        env.transactions.prevPrice == env.alm_params.startingPrice
     ), 'prev price not correctly initialized'
+    if env.alm_params.kappa > 0:
+        breakpoint()
+        assert env.transactions.prevUtility == env.compute_AC_utility(
+            env.alm_params.total_shares
+        ), 'prev utility not correctly initialized'
+
+
+def test_AC_variance():
+    actual = 204.3095586503
+    env = gym.make(ENV_ID)
+    result = env.get_AC_variance(30)
+    np.testing.assert_almost_equal(actual, result)
+
+
+def test_AC_expected_shortfall():
+    actual = 1.87537369133
+    env = gym.make(ENV_ID)
+    result = env.get_AC_expected_shortfall(30)
+    np.testing.assert_almost_equal(actual, result)
+
+
+def test_AC_utility():
+    actual = 1.87557800
+    env = gym.make(ENV_ID)
+    result = env.compute_AC_utility(30)
+    np.testing.assert_almost_equal(actual, result)
+    env_params = EnvParams(liquidation_time=0)
+    env.reset(env_params=env_params)
+    assert env.compute_AC_utility(0) == 0

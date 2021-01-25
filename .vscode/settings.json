@@ -1,3 +1,9 @@
 {
-    "python.pythonPath": "/Users/jccj/anaconda3/envs/crl_finance/bin/python"
+    "python.pythonPath": "/Users/jccj/anaconda3/envs/crl_finance/bin/python",
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.testing.pytestEnabled": true
 }
